@@ -1,0 +1,22 @@
+
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  #config.vm.synced_folder ".", "/home/develop"
+  #config.vm.provision "shell", inline: "echo Hello, World"
+  config.vm.hostname = "trimdev"
+  config.ssh.username = "develop"
+  config.ssh.password = "develop"
+  config.vm.define "trim" do |a|
+    a.vm.provider "docker" do |d|
+      d.build_dir = "."
+      d.has_ssh = true
+      d.build_args = ["-t=trim"]
+      #d.ports = ["8080:8080","9080:9080","4000:4000"]
+      d.name = "trim"
+      d.remains_running = true
+    end
+  end
+end
