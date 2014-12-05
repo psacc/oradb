@@ -1,5 +1,5 @@
-FROM wnameless/xe-temp
-
+#FROM wnameless/xe-temp
+FROM theswolf/dockerbase
 
 ADD chkconfig /sbin/chkconfig
 ADD init.ora /
