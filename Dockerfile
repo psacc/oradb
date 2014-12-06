@@ -1,4 +1,3 @@
-#FROM wnameless/xe-temp
 FROM theswolf/dockerbase
 
 ADD chkconfig /sbin/chkconfig
@@ -11,6 +10,8 @@ RUN mkdir /var/lock/subsys
 RUN chmod 755 /sbin/chkconfig
 #RUN ln -s /proc/mounts /etc/mtab
 
+RUM mkdir -p /tmp
+ADD oracle-xe_11.2.0-1.0_amd64.deb /tmp/oracle-xe_11.2.0-1.0_amd64.deb
 RUN dpkg --install /tmp/oracle-xe_11.2.0-1.0_amd64.deb
 
 RUN mv /init.ora /u01/app/oracle/product/11.2.0/xe/config/scripts
@@ -27,7 +28,8 @@ EXPOSE 1521
 EXPOSE 8080
 
 ADD import.sh /
-ADD esportazione.sql /
+ADD users.sql /
+ADD tables.sql /
 
 CMD sed -i -E "s/HOST = [^)]+/HOST = $HOSTNAME/g" /u01/app/oracle/product/11.2.0/xe/network/admin/listener.ora; \
 	service oracle-xe start; \

@@ -8,13 +8,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provision "shell", inline: "echo Hello, World"
   config.vm.hostname = "oradb"
   config.ssh.username = "root"
-  config.ssh.password = "admin"
+  config.ssh.password = "screencast"
   config.vm.define "oradb" do |a|
     a.vm.provider "docker" do |d|
       d.build_dir = "."
       #d.has_ssh = true
       d.build_args = ["-t=oradb"]
-      #d.ports = ["8080:8080","9080:9080","4000:4000"]
+      d.ports = ["1521:1521"]
       d.name = "oradb"
       d.remains_running = true
     end

@@ -1,19 +1,22 @@
 docker-oracle-xe-11g
 ============================
+-Commands to start are:
+vagrant up
+-The first time you use the db to you have to create users and tables:
+vagrant ssh (password is screencast)
+-once logged in: 
+cd /
+bash import.sh (you will prompted in a SQL console, type 'exit' two time to create users and tables).
+-edit the pom under the webapp folder and set dataSource.url as jdbc:oracle:thin:@localhost:1521:xe
 
-```
-docker pull wnameless/oracle-xe-11g
-```
 
-Run with 22 and 1521 ports opened:
-```
-docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
-```
+
+
 
 Connect database with following setting:
 ```
 hostname: localhost
-port: 49161
+port: 1521
 sid: xe
 username: system
 password: oracle
@@ -24,8 +27,3 @@ Password for SYS
 oracle
 ```
 
-Login by SSH
-```
-ssh root@localhost -p 49160
-password: admin
-```
