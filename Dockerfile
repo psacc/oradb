@@ -11,7 +11,8 @@ RUN chmod 755 /sbin/chkconfig
 #RUN ln -s /proc/mounts /etc/mtab
 
 RUM mkdir -p /tmp
-ADD oracle-xe_11.2.0-1.0_amd64.deb /tmp/oracle-xe_11.2.0-1.0_amd64.deb
+#ADD oracle-xe_11.2.0-1.0_amd64.deb /tmp/oracle-xe_11.2.0-1.0_amd64.deb
+RUN wget http://www.marco-gatti.com/debian/wheezy/unstable/oracle-xe_11.2.0-1.0_amd64.deb -O /tmp/oracle-xe_11.2.0-1.0_amd64.deb
 RUN dpkg --install /tmp/oracle-xe_11.2.0-1.0_amd64.deb
 
 RUN mv /init.ora /u01/app/oracle/product/11.2.0/xe/config/scripts
