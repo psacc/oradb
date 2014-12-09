@@ -1,5 +1,6 @@
 docker-oracle-xe-11g
 ============================
+-first put oracle-xe_11.2.0-1.0_amd64.deb in this folder you can find a copy 
 -Commands to start are:
 vagrant up
 -The first time you use the db to you have to create users and tables:
